@@ -1,5 +1,6 @@
 import { Events } from 'discord.js';
-import fs from 'node:fs';
+import fs from "node:fs";
+const data = JSON.parse(fs.readFileSync("./score.json","utf-8"));
 export const name = Events.MessageCreate;
 export async function execute(message) {
 	if (!message.author.bot && message.content == 'hi bot!') {
@@ -7,15 +8,10 @@ export async function execute(message) {
 			content:`Hii there! How was your Day ${message.author}`,
 		});
 	}
-	if (message.author.id == '745120737064648704' && message.attachments) {
-		message.delete()
-			.then(msg => {
-				console.log(`Deleted message from ${msg.author.username}`);
-
-				if (fs.existsSync('./logs.txt')) {
-					fs.appendFileSync('logs.txt', `\nDeleted message from ${msg.author.username}`);
-				}
-				else {fs.writeFileSync('logs.txt', `Deleted message from ${msg.author.username}`);}
-			});
+	if (message.content == '!r') {
+		message.reply({
+			content:JSON.stringify(data)
+		});
 	}
+
 }

@@ -47,5 +47,4 @@ const eventFiles = fs.readdirSync(eventsPath).filter(e => e.endsWith('.js'));
 	}
 })();
 
-
 client.login(process.env.DISCORD_TOKEN);

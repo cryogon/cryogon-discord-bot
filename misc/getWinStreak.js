@@ -3,12 +3,13 @@ export function getWinStreak(message,data) {
     const username = Object.keys(data).filter((k) =>
       k.includes(message.author.username)
     )[0];
+    const avatar = message.author.displayAvatarURL({extension:"png"});
     if (username) {
       const embed = new EmbedBuilder()
-        .setTitle("Win Streak Leaderboard")
+        .setTitle(`${username}'s Win Streak`)
+        .setThumbnail(avatar)
         .setColor(0x69c3ed)
         .addFields(
-          { name: "**user**", value: `\`${username}\``, inline: true },
           {
             name: "**win_streak**",
             value: `${data[username].win_streak}`,

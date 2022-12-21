@@ -12,7 +12,7 @@ export async function execute(message) {
   if (message.content == "!r") {
     getWinStreak(message,data);
   }
-  if(message.content == "!cmd"){
+  if(message.content.includes("!help")){
     getCommandList(message);
   }
 }

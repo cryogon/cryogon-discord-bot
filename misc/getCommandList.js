@@ -61,8 +61,10 @@ const commands = {
 
 export function getSpecificCommandDetail(message, msgChunks) {
   const cmd = msgChunks[1];
-  commands[cmd] &&
+  if(commands[cmd])
     message.reply({ embeds: [msgTemplate(commands[cmd].description, cmd)] });
+    else
+    message.reply(`no command called "${cmd}" found!`);
 }
 
 function msgTemplate(desc, cmd) {
